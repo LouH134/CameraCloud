@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Library-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="CloudCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="o1t-bR-To9">
+                                <rect key="frame" x="81" y="295" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nRF-0G-OTX">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Gle-8J-ev9">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo Library" id="i31-S2-Azp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688.8" y="-345.87706146926541"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="CloudCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eu-rl-dDv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="XaJ-7C-KbR"/>
+                                </constraints>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Photo Library" id="xSo-co-keN"/>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrJ-jV-S7i">
+                                <rect key="frame" x="0.0" y="64" width="375" height="272"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUL-Cg-8Cg">
+                                        <rect key="frame" x="111.5" y="69.5" width="151" height="134"/>
+                                        <state key="normal" image="btn_uploadphoto"/>
+                                        <connections>
+                                            <action selector="uploadPicture:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="oz4-co-tBV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dts-kW-mTa">
+                                        <rect key="frame" x="140" y="197" width="94" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="94" id="4u9-PS-hi8"/>
+                                            <constraint firstAttribute="height" constant="30" id="Aha-KM-anS"/>
+                                        </constraints>
+                                        <state key="normal" title="Upload Photo">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="dts-kW-mTa" firstAttribute="centerX" secondItem="hrJ-jV-S7i" secondAttribute="centerX" id="8VE-WL-3jz"/>
+                                    <constraint firstItem="uUL-Cg-8Cg" firstAttribute="centerX" secondItem="hrJ-jV-S7i" secondAttribute="centerX" id="Mdu-qk-OVs"/>
+                                    <constraint firstItem="uUL-Cg-8Cg" firstAttribute="centerY" secondItem="hrJ-jV-S7i" secondAttribute="centerY" id="NEc-eJ-2Mj"/>
+                                    <constraint firstAttribute="width" secondItem="hrJ-jV-S7i" secondAttribute="height" multiplier="375:272" id="dvg-QW-6px"/>
+                                    <constraint firstItem="dts-kW-mTa" firstAttribute="top" secondItem="uUL-Cg-8Cg" secondAttribute="bottom" constant="-6.5" id="lNM-ju-GWy"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlf-8m-xRP">
+                                <rect key="frame" x="0.0" y="344" width="375" height="274"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdT-mx-BIg">
+                                        <rect key="frame" x="112" y="62.5" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="LCa-PN-1Ei"/>
+                                            <constraint firstAttribute="width" constant="150" id="NRf-ZD-uy2"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="camera_button"/>
+                                        <connections>
+                                            <action selector="takePhoto:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="56N-Dd-bKB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djN-3c-jOi">
+                                        <rect key="frame" x="112" y="220" width="150" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="2k4-AZ-xXX"/>
+                                            <constraint firstAttribute="width" constant="150" id="d5Y-3n-CMW"/>
+                                        </constraints>
+                                        <state key="normal" title="Take Photo">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="djN-3c-jOi" firstAttribute="top" secondItem="xdT-mx-BIg" secondAttribute="bottom" constant="8" id="9HO-8o-mYY"/>
+                                    <constraint firstItem="xdT-mx-BIg" firstAttribute="centerX" secondItem="nlf-8m-xRP" secondAttribute="centerX" id="IvV-SZ-a0a"/>
+                                    <constraint firstItem="djN-3c-jOi" firstAttribute="centerX" secondItem="xdT-mx-BIg" secondAttribute="centerX" id="Mrx-fG-Jti"/>
+                                    <constraint firstItem="xdT-mx-BIg" firstAttribute="centerY" secondItem="nlf-8m-xRP" secondAttribute="centerY" id="w2g-Jh-e9Z"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nlf-8m-xRP" secondAttribute="trailing" id="15h-LI-aqe"/>
+                            <constraint firstAttribute="trailing" secondItem="hrJ-jV-S7i" secondAttribute="trailing" id="6fh-QH-5Id"/>
+                            <constraint firstItem="5eu-rl-dDv" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="E8d-1I-vLJ"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="nlf-8m-xRP" secondAttribute="bottom" id="EUO-Fh-sta"/>
+                            <constraint firstAttribute="trailing" secondItem="5eu-rl-dDv" secondAttribute="trailing" id="ZBp-MQ-r7I"/>
+                            <constraint firstItem="5eu-rl-dDv" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="ddj-Rv-7So"/>
+                            <constraint firstItem="nlf-8m-xRP" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="ixl-oK-V11"/>
+                            <constraint firstItem="hrJ-jV-S7i" firstAttribute="top" secondItem="5eu-rl-dDv" secondAttribute="bottom" id="jcO-Wc-Xq9"/>
+                            <constraint firstItem="nlf-8m-xRP" firstAttribute="top" secondItem="hrJ-jV-S7i" secondAttribute="bottom" constant="8" symbolic="YES" id="m9a-cg-DsU"/>
+                            <constraint firstItem="hrJ-jV-S7i" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="uHZ-hz-6Li"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="camera" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="cameraPic" destination="xdT-mx-BIg" id="LeE-fE-4FQ"/>
+                        <outlet property="textCameraButton" destination="djN-3c-jOi" id="AG0-F8-jdn"/>
+                        <outlet property="uploadPicButton" destination="uUL-Cg-8Cg" id="f4k-1l-yku"/>
+                        <outlet property="uploadPicTextButton" destination="dts-kW-mTa" id="blz-M7-Ye8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="lu1-Ks-sr5" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wIy-VW-0PQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lu1-Ks-sr5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="home" id="acW-dT-cKf">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qA3-mP-F3o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="9Yc-hZ-Haq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ynA-sf-49s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="-345.87706146926541"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="btn_uploadphoto" width="151" height="134"/>
+        <image name="camera" width="32" height="32"/>
+        <image name="camera_button" width="75" height="57"/>
+        <image name="home" width="32" height="32"/>
+    </resources>
+</document>
