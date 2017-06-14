@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		613139CA1EEF1FAA00861482 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 613139C91EEF1FAA00861482 /* GoogleService-Info.plist */; };
+		615CDF561EF1DEB100747944 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615CDF551EF1DEB100747944 /* ImageCollectionViewCell.swift */; };
 		6172CA031EEF14C5003912B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6172CA021EEF14C5003912B1 /* AppDelegate.swift */; };
 		6172CA051EEF14C5003912B1 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6172CA041EEF14C5003912B1 /* FirstViewController.swift */; };
 		6172CA071EEF14C5003912B1 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6172CA061EEF14C5003912B1 /* SecondViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		47E4D1F98818CF5D58AA4242 /* Pods-CloudCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudCamera/Pods-CloudCamera.release.xcconfig"; sourceTree = "<group>"; };
 		613139C91EEF1FAA00861482 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		615CDF551EF1DEB100747944 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		6172C9FF1EEF14C5003912B1 /* CloudCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6172CA021EEF14C5003912B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6172CA041EEF14C5003912B1 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				6172CA041EEF14C5003912B1 /* FirstViewController.swift */,
 				6172CA061EEF14C5003912B1 /* SecondViewController.swift */,
 				6172CA081EEF14C5003912B1 /* Main.storyboard */,
+				615CDF551EF1DEB100747944 /* ImageCollectionViewCell.swift */,
 				6172CA0B1EEF14C5003912B1 /* Assets.xcassets */,
 				6172CA0D1EEF14C5003912B1 /* LaunchScreen.storyboard */,
 				6172CA101EEF14C5003912B1 /* Info.plist */,
@@ -221,6 +224,7 @@
 			files = (
 				6172CA071EEF14C5003912B1 /* SecondViewController.swift in Sources */,
 				6172CA031EEF14C5003912B1 /* AppDelegate.swift in Sources */,
+				615CDF561EF1DEB100747944 /* ImageCollectionViewCell.swift in Sources */,
 				6172CA051EEF14C5003912B1 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

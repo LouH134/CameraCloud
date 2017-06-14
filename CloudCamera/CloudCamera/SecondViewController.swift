@@ -56,6 +56,11 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
             picker.delegate = self
             
             picker.allowsEditing = false
+            picker.navigationBar.isTranslucent = false
+            picker.navigationBar.barTintColor = .black
+            picker.navigationBar.tintColor = .red
+            picker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+            
             picker.sourceType = .photoLibrary
             
             present(picker, animated: true, completion: nil)
@@ -64,6 +69,12 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
             picker.delegate = self
             
             picker.allowsEditing = false
+            
+            picker.navigationBar.isTranslucent = false
+            picker.navigationBar.barTintColor = .black
+            picker.navigationBar.tintColor = .red
+            picker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+            
             picker.sourceType = .photoLibrary
             
             present(picker, animated: true, completion: nil)
