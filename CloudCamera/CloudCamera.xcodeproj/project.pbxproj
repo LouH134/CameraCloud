@@ -15,6 +15,8 @@
 		6172CA0A1EEF14C5003912B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6172CA081EEF14C5003912B1 /* Main.storyboard */; };
 		6172CA0C1EEF14C5003912B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6172CA0B1EEF14C5003912B1 /* Assets.xcassets */; };
 		6172CA0F1EEF14C5003912B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6172CA0D1EEF14C5003912B1 /* LaunchScreen.storyboard */; };
+		617476011EF30EA10082F57B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617476001EF30EA10082F57B /* LoginVC.swift */; };
+		617476031EF331190082F57B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617476021EF331190082F57B /* SignUpVC.swift */; };
 		69E9FDBC23DDB4A69F6D2D97 /* Pods_CloudCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D21DE4B515D26908D5274D4 /* Pods_CloudCamera.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		6172CA0B1EEF14C5003912B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6172CA0E1EEF14C5003912B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6172CA101EEF14C5003912B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		617476001EF30EA10082F57B /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		617476021EF331190082F57B /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		7D21DE4B515D26908D5274D4 /* Pods_CloudCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9181E2835FD9410FA51BECA /* Pods-CloudCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudCamera/Pods-CloudCamera.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,8 +82,10 @@
 				6172CA021EEF14C5003912B1 /* AppDelegate.swift */,
 				6172CA041EEF14C5003912B1 /* FirstViewController.swift */,
 				6172CA061EEF14C5003912B1 /* SecondViewController.swift */,
-				6172CA081EEF14C5003912B1 /* Main.storyboard */,
 				615CDF551EF1DEB100747944 /* ImageCollectionViewCell.swift */,
+				617476001EF30EA10082F57B /* LoginVC.swift */,
+				617476021EF331190082F57B /* SignUpVC.swift */,
+				6172CA081EEF14C5003912B1 /* Main.storyboard */,
 				6172CA0B1EEF14C5003912B1 /* Assets.xcassets */,
 				6172CA0D1EEF14C5003912B1 /* LaunchScreen.storyboard */,
 				6172CA101EEF14C5003912B1 /* Info.plist */,
@@ -226,6 +232,8 @@
 				6172CA031EEF14C5003912B1 /* AppDelegate.swift in Sources */,
 				615CDF561EF1DEB100747944 /* ImageCollectionViewCell.swift in Sources */,
 				6172CA051EEF14C5003912B1 /* FirstViewController.swift in Sources */,
+				617476031EF331190082F57B /* SignUpVC.swift in Sources */,
+				617476011EF30EA10082F57B /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
