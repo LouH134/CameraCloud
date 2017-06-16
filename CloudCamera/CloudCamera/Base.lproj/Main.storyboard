@@ -210,7 +210,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-788" y="758"/>
+            <point key="canvasLocation" x="-718" y="834"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wIy-VW-0PQ">
@@ -399,6 +399,9 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signupButtonPressed:" destination="19A-Hz-2TS" eventType="touchUpInside" id="WbO-a9-Lea"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfG-Ls-ewZ">
                                 <rect key="frame" x="16" y="619" width="343" height="40"/>
@@ -441,6 +444,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Fst-49-EuW" secondAttribute="trailing" constant="132" id="wjT-2I-Itz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="E5W-oJ-vz4" id="TSN-0j-BcO"/>
+                        <outlet property="password" destination="g7A-db-Mv9" id="S44-ev-VuB"/>
+                        <outlet property="profileImage" destination="Fst-49-EuW" id="nvU-CD-cde"/>
+                        <outlet property="username" destination="3hd-CJ-q7t" id="nxn-b5-YOC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lft-lr-Ttp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
