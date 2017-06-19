@@ -7,22 +7,65 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginVC: UIViewController {
 
  
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-    
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.loginButton.isEnabled = false
+        
+        handleTextField()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if Auth.auth().currentUser != nil{
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(timer) in
+                self.performSegue(withIdentifier: "goToTabBarVC", sender: nil)
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func handleTextField()
+    {
+        email.addTarget(self, action: #selector(SignUpVC.textFieldChanged), for: UIControlEvents.editingChanged)
+        password.addTarget(self, action: #selector(SignUpVC.textFieldChanged), for: UIControlEvents.editingChanged)
+    }
+    
+    func textFieldChanged()
+    {
+        guard let emailString = email.text, !emailString.isEmpty, let passwordString = password.text, !passwordString.isEmpty else {
+            self.loginButton.setTitleColor(UIColor.red, for: UIControlState.normal)
+            self.loginButton.isEnabled = false
+            
+            return
+        }
+        self.loginButton.setTitleColor(UIColor.purple, for: UIControlState.normal)
+        self.loginButton.isEnabled = true
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        AuthService.logIn(email: self.email.text!, password: self.password.text!, onSuccess: {
+            self.performSegue(withIdentifier: "goToTabBarVC", sender: nil)
+        }, onError: { error in
+            print(error!)
+        })
     }
 }

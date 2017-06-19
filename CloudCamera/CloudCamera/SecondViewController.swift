@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -14,6 +15,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var uploadPicTextButton: UIButton!
     @IBOutlet weak var cameraPic: UIButton!
     @IBOutlet weak var textCameraButton: UIButton!
+    var selectedImage:UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,13 +83,26 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    @IBAction func logOut(_ sender: Any) {
+        do{
+            try Auth.auth().signOut()
+        }catch let logOutError{
+            print(logOutError)
+        }
+        dismiss(animated: true, completion: nil)
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        guard let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-//            else{
-//                return
-//        }
-//        
+        if let chosenImage = info["UIImagePickerControllerOriginalImage"] as? UIImage
+        {
+                self.selectedImage = chosenImage
+        }
+        //get unique id from signed in user
+        //store photo in firebase storage
+        //change image to data that can be stored in firebase
+        //take metadata turn to urlstring that can be saved in firebase
+        //update user info to contain saved image
+        
         
         dismiss(animated: true, completion: nil)
         

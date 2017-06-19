@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class FirstViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
 {
@@ -25,7 +26,19 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
         self.navigationItem.title = "Moments"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "LogOut", style: .plain, target: self, action: #selector(logOut))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.red
         
+    }
+    
+    func logOut()
+    {
+        do{
+            try Auth.auth().signOut()
+        }catch let logOutError{
+            print(logOutError)
+        }
+        dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

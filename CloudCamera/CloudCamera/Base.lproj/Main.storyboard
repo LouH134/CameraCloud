@@ -100,7 +100,14 @@
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Photo Library" id="xSo-co-keN"/>
+                                    <navigationItem title="Photo Library" id="xSo-co-keN">
+                                        <barButtonItem key="leftBarButtonItem" title="LogOut" id="zfH-cT-ha4">
+                                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="logOut:" destination="8rJ-Kc-sve" id="dU9-pr-Lt3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrJ-jV-S7i">
@@ -285,7 +292,7 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="rhA-ns-nCb"/>
+                                    <action selector="loginButtonPressed:" destination="yUa-ar-pmB" eventType="touchUpInside" id="5ru-dQ-uYr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AND" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4D-L2-fwz">
@@ -335,7 +342,9 @@
                     </view>
                     <connections>
                         <outlet property="email" destination="axL-QV-q6Y" id="B48-kY-YGz"/>
+                        <outlet property="loginButton" destination="ePo-4W-ezQ" id="bLU-PG-svG"/>
                         <outlet property="password" destination="X14-BM-R0I" id="OeR-Ur-fsH"/>
+                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="goToTabBarVC" id="Q1w-hZ-icq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxg-5m-isj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -401,6 +410,7 @@
                                 </state>
                                 <connections>
                                     <action selector="signupButtonPressed:" destination="19A-Hz-2TS" eventType="touchUpInside" id="WbO-a9-Lea"/>
+                                    <segue destination="49e-Tb-3d3" kind="presentation" identifier="goToTabBarVC" id="EcH-8i-hVG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfG-Ls-ewZ">
@@ -448,6 +458,7 @@
                         <outlet property="email" destination="E5W-oJ-vz4" id="TSN-0j-BcO"/>
                         <outlet property="password" destination="g7A-db-Mv9" id="S44-ev-VuB"/>
                         <outlet property="profileImage" destination="Fst-49-EuW" id="nvU-CD-cde"/>
+                        <outlet property="signUpButton" destination="wWo-4l-37l" id="BNx-sd-Hvf"/>
                         <outlet property="username" destination="3hd-CJ-q7t" id="nxn-b5-YOC"/>
                     </connections>
                 </viewController>
@@ -465,4 +476,7 @@
         <image name="home" width="32" height="32"/>
         <image name="placeholderPerson" width="200" height="252"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EcH-8i-hVG"/>
+    </inferredMetricsTieBreakers>
 </document>
