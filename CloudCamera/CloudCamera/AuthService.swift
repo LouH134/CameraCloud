@@ -55,7 +55,6 @@ class AuthService{
     
     static func setUserInfo(profileImageUrl: String, username: String, email: String, uid: String, onSuccess: @escaping () -> Void)
     {
-        
         //create node in the database
         let ref = Database.database().reference()
         let userReference = ref.child("users")

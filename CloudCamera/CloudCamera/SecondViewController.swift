@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -97,15 +99,42 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         {
                 self.selectedImage = chosenImage
         }
-        //get unique id from signed in user
-        //store photo in firebase storage
-        //change image to data that can be stored in firebase
-        //take metadata turn to urlstring that can be saved in firebase
-        //update user info to contain saved image
-        
-        
+        ProgressHUD.show("Waiting....", interaction: false)
+        //lets the image be saved as data
+        if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
+            let photoID = NSUUID().uuidString
+            
+            let storageRef = Storage.storage().reference(forURL: Config.ROOT_URL).child("posts").child(photoID)
+            storageRef.putData(imageData, metadata: nil, completion: {(metadata, error) in
+                if error != nil{
+                    ProgressHUD.showError(error!.localizedDescription)
+                    return
+                }
+                
+                //takes the metadata and makes a urlstring that can be saved in firebase
+                let photoURL = metadata?.downloadURL()?.absoluteString
+                self.sendDataToDatabase(photoURL: photoURL!)
+            })
+        }
         dismiss(animated: true, completion: nil)
-        
+    }
+    
+    func sendDataToDatabase(photoURL: String)
+    {
+        //create node in the database
+        let ref = Database.database().reference()
+        let postsReference = ref.child("posts")
+        let newPostID = postsReference.childByAutoId().key
+        let newPostReference = postsReference.child(newPostID)
+        //saving username and email to database
+        newPostReference.setValue(["photoURL":photoURL], withCompletionBlock: {(error, ref) in
+            if error != nil{
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
+            ProgressHUD.showSuccess("Woot!, it worked!")
+        })
+
     }
 
 

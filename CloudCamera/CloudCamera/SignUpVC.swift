@@ -76,14 +76,18 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {
+        self.view.endEditing(true)
+        ProgressHUD.show("Waiting....", interaction: false)
         //lets the image be saved as data
         if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
             AuthService.signUp(username: self.username.text!, email: self.email.text!, password: self.password.text!, imageData: imageData, onSuccess: {
-                self.performSegue(withIdentifier: "goToTabBarVC", sender: nil)
+                ProgressHUD.showSuccess("Success")
+                self.performSegue(withIdentifier: "goToTabBarVCFromCreate", sender: nil)
             }, onError: {(errorString) in
-                print(errorString!)
-                
+                ProgressHUD.showError(errorString)
             })
+        }else{
+            ProgressHUD.showError("Profile Image Can't Be Empty")
         }
     }
     

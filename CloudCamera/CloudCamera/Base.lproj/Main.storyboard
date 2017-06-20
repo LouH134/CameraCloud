@@ -188,7 +188,7 @@
                             <constraint firstItem="hrJ-jV-S7i" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="uHZ-hz-6Li"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="camera" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="" image="camera" selectedImage="camera" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="cameraPic" destination="xdT-mx-BIg" id="LeE-fE-4FQ"/>
                         <outlet property="textCameraButton" destination="djN-3c-jOi" id="AG0-F8-jdn"/>
@@ -223,7 +223,7 @@
         <scene sceneID="wIy-VW-0PQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lu1-Ks-sr5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="home" id="acW-dT-cKf">
+                    <tabBarItem key="tabBarItem" title="" image="home" selectedImage="home" id="acW-dT-cKf">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -410,7 +410,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signupButtonPressed:" destination="19A-Hz-2TS" eventType="touchUpInside" id="WbO-a9-Lea"/>
-                                    <segue destination="49e-Tb-3d3" kind="presentation" identifier="goToTabBarVC" id="EcH-8i-hVG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfG-Ls-ewZ">
@@ -460,6 +459,7 @@
                         <outlet property="profileImage" destination="Fst-49-EuW" id="nvU-CD-cde"/>
                         <outlet property="signUpButton" destination="wWo-4l-37l" id="BNx-sd-Hvf"/>
                         <outlet property="username" destination="3hd-CJ-q7t" id="nxn-b5-YOC"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="goToTabBarVCFromCreate" id="kKc-xH-ChZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lft-lr-Ttp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -477,6 +477,6 @@
         <image name="placeholderPerson" width="200" height="252"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EcH-8i-hVG"/>
+        <segue reference="kKc-xH-ChZ"/>
     </inferredMetricsTieBreakers>
 </document>

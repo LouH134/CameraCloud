@@ -62,10 +62,14 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
+        ProgressHUD.show("Waiting....", interaction: false)
         AuthService.logIn(email: self.email.text!, password: self.password.text!, onSuccess: {
+            ProgressHUD.showSuccess("Success")
             self.performSegue(withIdentifier: "goToTabBarVC", sender: nil)
         }, onError: { error in
-            print(error!)
+            ProgressHUD.showError(error)
         })
+        self.view.endEditing(true)
+        
     }
 }
