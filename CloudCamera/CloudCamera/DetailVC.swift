@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class DetailVC: UIViewController {
     
     @IBOutlet weak var commentsTextField: UITextField!
+    @IBOutlet weak var likesNumberLabel: UILabel!
+    var likePressCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,9 @@ class DetailVC: UIViewController {
     }
     
     @IBAction func likesButtonPressed(_ sender: Any) {
+        self.likePressCount = Int(likesNumberLabel.text!)!
+        self.likesNumberLabel.text = String(likePressCount + 1)
+        
     }
     
     @IBAction func optionsButtonPressed(_ sender: Any) {

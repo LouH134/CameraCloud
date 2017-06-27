@@ -20,6 +20,7 @@
 		617476011EF30EA10082F57B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617476001EF30EA10082F57B /* LoginVC.swift */; };
 		617476031EF331190082F57B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617476021EF331190082F57B /* SignUpVC.swift */; };
 		618181361EFAE59400EF4118 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618181351EFAE59400EF4118 /* DetailVC.swift */; };
+		61827E831F0176820052FA7E /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61827E821F0176820052FA7E /* Photo.swift */; };
 		61922AAA1EF990D100C0A861 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 61922AA71EF990D100C0A861 /* ProgressHUD.bundle */; };
 		61922AAB1EF990D100C0A861 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 61922AA91EF990D100C0A861 /* ProgressHUD.m */; };
 		69E9FDBC23DDB4A69F6D2D97 /* Pods_CloudCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D21DE4B515D26908D5274D4 /* Pods_CloudCamera.framework */; };
@@ -42,6 +43,7 @@
 		617476001EF30EA10082F57B /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		617476021EF331190082F57B /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		618181351EFAE59400EF4118 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		61827E821F0176820052FA7E /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		61922AA61EF990D000C0A861 /* CloudCamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloudCamera-Bridging-Header.h"; sourceTree = "<group>"; };
 		61922AA71EF990D100C0A861 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		61922AA81EF990D100C0A861 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				617476001EF30EA10082F57B /* LoginVC.swift */,
 				617476021EF331190082F57B /* SignUpVC.swift */,
 				618181351EFAE59400EF4118 /* DetailVC.swift */,
+				61827E821F0176820052FA7E /* Photo.swift */,
 				616AB79B1EF87E3700A61E2C /* URLConfig.swift */,
 				616AB7991EF8539D00A61E2C /* AuthService.swift */,
 				6172CA081EEF14C5003912B1 /* Main.storyboard */,
@@ -256,6 +259,7 @@
 				616AB79C1EF87E3700A61E2C /* URLConfig.swift in Sources */,
 				618181361EFAE59400EF4118 /* DetailVC.swift in Sources */,
 				6172CA051EEF14C5003912B1 /* FirstViewController.swift in Sources */,
+				61827E831F0176820052FA7E /* Photo.swift in Sources */,
 				617476031EF331190082F57B /* SignUpVC.swift in Sources */,
 				617476011EF30EA10082F57B /* LoginVC.swift in Sources */,
 				616AB79A1EF8539D00A61E2C /* AuthService.swift in Sources */,

@@ -11,6 +11,10 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
+protocol ImageUploadDelegate {
+    func didUploadNewPhoto(_ photo: Photo)
+}
+
 class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var uploadPicButton: UIButton!
@@ -18,6 +22,8 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var cameraPic: UIButton!
     @IBOutlet weak var textCameraButton: UIButton!
     var selectedImage:UIImage?
+    var delegate: ImageUploadDelegate?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +103,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let chosenImage = info["UIImagePickerControllerOriginalImage"] as? UIImage
         {
-                self.selectedImage = chosenImage
+            self.selectedImage = chosenImage
         }
         ProgressHUD.show("Waiting....", interaction: false)
         //lets the image be saved as data
@@ -113,6 +119,8 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
                 
                 //takes the metadata and makes a urlstring that can be saved in firebase
                 let photoURL = metadata?.downloadURL()?.absoluteString
+                //let chosenPhoto = Photo(image: self.selectedImage!, photoUrlString: photoURL!)
+                
                 self.sendDataToDatabase(photoURL: photoURL!)
             })
         }
@@ -133,6 +141,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
                 return
             }
             ProgressHUD.showSuccess("Woot!, it worked!")
+            self.delegate?.didUploadNewPhoto(Photo(photoUrlString: photoURL))
         })
 
     }
