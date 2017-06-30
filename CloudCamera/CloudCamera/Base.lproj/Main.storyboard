@@ -193,6 +193,7 @@
                     <connections>
                         <outlet property="commentsTextField" destination="Nwa-VV-s3D" id="cro-aV-oeT"/>
                         <outlet property="likesNumberLabel" destination="9Hi-f3-WNK" id="Ytc-aU-HT4"/>
+                        <outlet property="picture" destination="3ef-x0-vpe" id="K0M-tR-qjs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rT3-Pw-cn5" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -135,14 +135,14 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         let newPostID = postsReference.childByAutoId().key
         let newPostReference = postsReference.child(newPostID)
         //saving username and email to database
-        newPostReference.setValue(["photoURL":photoURL], withCompletionBlock: {(error, ref) in
+        newPostReference.setValue(["photoURL":photoURL, "likes":0], withCompletionBlock: {(error, ref) in
             if error != nil{
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
             ProgressHUD.showSuccess("Woot!, it worked!")
-            self.delegate?.didUploadNewPhoto(Photo(photoUrlString: photoURL))
-        })
+            self.delegate?.didUploadNewPhoto(Photo(photoUrlString: photoURL, uniqueID: newPostID)
+        )})
 
     }
 

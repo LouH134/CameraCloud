@@ -45,6 +45,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         layout.minimumLineSpacing = 0
         layout.itemSize = CGSize(width: screenWidth/3 , height: screenHeight/3)
         collectionView.collectionViewLayout = layout
+        
         loadPosts()
     }
     
@@ -60,14 +61,14 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
             //turn data into a String:Any dictionary get the folder get the urlstring as post put it into an array
             if let dictionary = snapshot.value as? [String:Any]{
                 
-                for value in dictionary.values{
+                for (key, value) in dictionary {
                     guard let value = value as? [String: Any] else{
                         return
                     }
                     guard let photoUrl =  value["photoURL"] as? String else{
                         return
                     }
-                    let post = Photo(photoUrlString: photoUrl)
+                    let post = Photo(photoUrlString: photoUrl, uniqueID: key)
                      self.pictures.append(post)
                 }
                 
@@ -131,6 +132,9 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
         self.navigationController?.pushViewController(detailVC, animated: true)
+        detailVC.currentImage = self.pictures[indexPath.row].photoImage
+        detailVC.currentKey = self.pictures[indexPath.row].uniqueID
+        detailVC.currentUrlString = self.pictures[indexPath.row].photoURL
     }
     
     

@@ -19,14 +19,16 @@ class Photo
     //post
     var comment:String? //make an array of comments
     var likes:Int?
+    var uniqueID: String
     
     
     
     
     
-    init(photoUrlString:String)
+    init(photoUrlString:String, uniqueID: String)
     {
         self.photoURL = photoUrlString
+        self.uniqueID = uniqueID
     }
     
     

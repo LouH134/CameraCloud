@@ -72,6 +72,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6137CB5E1F057F3000124B1E /* Tab Bar Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				6172CA041EEF14C5003912B1 /* FirstViewController.swift */,
+				6172CA061EEF14C5003912B1 /* SecondViewController.swift */,
+				615CDF551EF1DEB100747944 /* ImageCollectionViewCell.swift */,
+			);
+			name = "Tab Bar Stuff";
+			sourceTree = "<group>";
+		};
+		6137CB5F1F057F6E00124B1E /* User Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				617476001EF30EA10082F57B /* LoginVC.swift */,
+				617476021EF331190082F57B /* SignUpVC.swift */,
+			);
+			name = "User Stuff";
+			sourceTree = "<group>";
+		};
+		6137CB601F057FB000124B1E /* Firebase Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				616AB79B1EF87E3700A61E2C /* URLConfig.swift */,
+				616AB7991EF8539D00A61E2C /* AuthService.swift */,
+			);
+			name = "Firebase Stuff";
+			sourceTree = "<group>";
+		};
 		6172C9F61EEF14C5003912B1 = {
 			isa = PBXGroup;
 			children = (
@@ -94,15 +122,11 @@
 			isa = PBXGroup;
 			children = (
 				6172CA021EEF14C5003912B1 /* AppDelegate.swift */,
-				6172CA041EEF14C5003912B1 /* FirstViewController.swift */,
-				6172CA061EEF14C5003912B1 /* SecondViewController.swift */,
-				615CDF551EF1DEB100747944 /* ImageCollectionViewCell.swift */,
-				617476001EF30EA10082F57B /* LoginVC.swift */,
-				617476021EF331190082F57B /* SignUpVC.swift */,
-				618181351EFAE59400EF4118 /* DetailVC.swift */,
+				6137CB5E1F057F3000124B1E /* Tab Bar Stuff */,
+				6137CB5F1F057F6E00124B1E /* User Stuff */,
+				6137CB601F057FB000124B1E /* Firebase Stuff */,
 				61827E821F0176820052FA7E /* Photo.swift */,
-				616AB79B1EF87E3700A61E2C /* URLConfig.swift */,
-				616AB7991EF8539D00A61E2C /* AuthService.swift */,
+				618181351EFAE59400EF4118 /* DetailVC.swift */,
 				6172CA081EEF14C5003912B1 /* Main.storyboard */,
 				6172CA0B1EEF14C5003912B1 /* Assets.xcassets */,
 				6172CA0D1EEF14C5003912B1 /* LaunchScreen.storyboard */,
