@@ -22,6 +22,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var cameraPic: UIButton!
     @IBOutlet weak var textCameraButton: UIButton!
     var selectedImage:UIImage?
+    var commentsArray = [String]()
     var delegate: ImageUploadDelegate?
 
     
@@ -133,9 +134,10 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         let ref = Database.database().reference()
         let postsReference = ref.child("posts")
         let newPostID = postsReference.childByAutoId().key
+        //can be thought of as selected picture in collection view
         let newPostReference = postsReference.child(newPostID)
-        //saving username and email to database
-        newPostReference.setValue(["photoURL":photoURL, "likes":0], withCompletionBlock: {(error, ref) in
+        //adding childs to post
+        newPostReference.setValue(["photoURL":photoURL, "likes":0, "comments":self.commentsArray], withCompletionBlock: {(error, ref) in
             if error != nil{
                 ProgressHUD.showError(error!.localizedDescription)
                 return

@@ -94,6 +94,41 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jYK-Bo-TiW">
                                 <rect key="frame" x="0.0" y="426" width="375" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" id="oNK-Vf-fqG" customClass="TableViewCell" customModule="CloudCamera" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oNK-Vf-fqG" id="uvA-eK-AZo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1B-Fo-Nnb" userLabel="Author">
+                                                    <rect key="frame" x="8" y="8" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHv-JW-q8s" userLabel="Comment">
+                                                    <rect key="frame" x="8" y="13" width="359" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="IHv-JW-q8s" secondAttribute="trailing" constant="8" id="11U-x3-hnc"/>
+                                                <constraint firstItem="b1B-Fo-Nnb" firstAttribute="leading" secondItem="uvA-eK-AZo" secondAttribute="leadingMargin" id="Djx-RG-i5j"/>
+                                                <constraint firstItem="IHv-JW-q8s" firstAttribute="leading" secondItem="uvA-eK-AZo" secondAttribute="leading" constant="8" id="NzB-j3-EFX"/>
+                                                <constraint firstItem="b1B-Fo-Nnb" firstAttribute="top" secondItem="uvA-eK-AZo" secondAttribute="topMargin" id="Z22-l7-DFB"/>
+                                                <constraint firstItem="IHv-JW-q8s" firstAttribute="top" secondItem="b1B-Fo-Nnb" secondAttribute="bottom" constant="5" id="yA8-Xh-g35"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="author" destination="b1B-Fo-Nnb" id="vKz-p2-n35"/>
+                                            <outlet property="comment" destination="IHv-JW-q8s" id="m18-J0-Kol"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a comment..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nwa-VV-s3D">
                                 <rect key="frame" x="0.0" y="637" width="375" height="30"/>
@@ -102,7 +137,10 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                                <connections>
+                                    <action selector="commentTxtFieldTriggered:" destination="uLT-1c-Agg" eventType="primaryActionTriggered" id="alT-O8-scF"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16e-rB-bQ2" userLabel="ToolBarView">
                                 <rect key="frame" x="0.0" y="387" width="375" height="44"/>
@@ -191,6 +229,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ARk-ok-4bB"/>
                     <connections>
+                        <outlet property="commentsTableView" destination="jYK-Bo-TiW" id="BMY-8S-983"/>
                         <outlet property="commentsTextField" destination="Nwa-VV-s3D" id="cro-aV-oeT"/>
                         <outlet property="likesNumberLabel" destination="9Hi-f3-WNK" id="Ytc-aU-HT4"/>
                         <outlet property="picture" destination="3ef-x0-vpe" id="K0M-tR-qjs"/>

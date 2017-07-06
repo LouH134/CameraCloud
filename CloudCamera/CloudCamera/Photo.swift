@@ -17,7 +17,7 @@ class Photo
     //image
     var photoImage:UIImage?
     //post
-    var comment:String? //make an array of comments
+    var comments = [String]()
     var likes:Int?
     var uniqueID: String
     

@@ -132,9 +132,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
         self.navigationController?.pushViewController(detailVC, animated: true)
+        detailVC.currentPhoto = self.pictures[indexPath.row]
         detailVC.currentImage = self.pictures[indexPath.row].photoImage
-        detailVC.currentKey = self.pictures[indexPath.row].uniqueID
-        detailVC.currentUrlString = self.pictures[indexPath.row].photoURL
     }
     
     

@@ -6,29 +6,74 @@
 //  Copyright © 2017 Louis Harris. All rights reserved.
 //
 
+///////////////////////////////////////////////////////
+//             TO DO:                                //
+//Delete the Photo from database and collection view.//
+//                                                   //
+//Message button should go to a tableviewVC with all //
+//the comments.                                      //
+///////////////////////////////////////////////////////
+
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class DetailVC: UIViewController {
+class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var commentsTextField: UITextField!
     @IBOutlet weak var likesNumberLabel: UILabel!
     @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var commentsTableView: UITableView!
     var likePressCount : Int?
     var currentImage:UIImage?
-    var currentKey:String!
-    var currentUrlString:String!
+    var currentPhoto : Photo?
+    var keyboardHeight: CGRect!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadLikes()
+        loadCommentsFromDatabase()
+        
+       
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goBack))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.red
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
         self.navigationItem.title = "Photo Detail"
         
         self.picture.image = currentImage
+        
+        self.commentsTableView.delegate = self
+        self.commentsTableView.dataSource = self
+        
+        self.keyboardHeight = self.view.frame
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func keyboardWillShow(notification:NSNotification)
+    {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue{
+            if self.view.frame.origin.y == 0{
+                self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: keyboardHeight.height - keyboardSize.height - 1)
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification:NSNotification)
+    {
+        if((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil{
+            self.view.frame = keyboardHeight
+        }
+    }
+    
+    func dissmissKeyboard()
+    {
+        self.view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,27 +95,49 @@ class DetailVC: UIViewController {
             self.likePressCount!-=1
             self.likesNumberLabel.text = String(likePressCount!)
         }
-        
-        
         saveLikesToDatabase()
-        
     }
     
     @IBAction func optionsButtonPressed(_ sender: Any) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Delete Photo", style: .default, handler: {
+            (alert:UIAlertAction!) -> Void in
+            print("Photo Deleted")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert:UIAlertAction!) -> Void in
+            print("Canceled")
+        })
+        
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.present(optionMenu, animated: true, completion: nil)
+        optionMenu.view.tintColor = .red
+
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
     }
+    @IBAction func commentTxtFieldTriggered(_ sender: Any) {
+        saveCommentToDatabase()
+    }
     
     func saveLikesToDatabase()
     {
-        let currentPhoto = Photo(photoUrlString: self.currentUrlString, uniqueID: self.currentKey)
-        //get uniqueID to specific photo
-        Database.database().reference().child("posts").child(currentPhoto.uniqueID).runTransactionBlock({(currentData:MutableData) -> TransactionResult in
+        //get the path and run a transaction block
+    
+        Database.database().reference().child("posts").child((currentPhoto?.uniqueID)!).runTransactionBlock({(currentData:MutableData) -> TransactionResult in
+            //gets current user and teh data as a dictionary of string any object
             if var post = currentData.value as? [String:AnyObject], let uid = Auth.auth().currentUser?.uid{
+                //makes a dictionary of photos and then sees if there is any data in that dictionary if there is none then it makes an empty dictionary
                 var photos: Dictionary<String, Bool>
                 photos = post["photos"] as? [String:Bool] ?? [:]
+                //gets the dictionary of likesCount which is an int if there is none set default value to 0
                 var likesCount = post["likesCount"] as? Int ?? 0
+                //checks the value of the dictionary photos against the usersid if the userid has been used remove from the dictionary else add to dictionary
                 if let _ = photos[uid]{
                     likesCount -= 1
                     photos.removeValue(forKey: uid)
@@ -93,10 +160,21 @@ class DetailVC: UIViewController {
         }
     }
     
+    func saveCommentToDatabase()
+    {
+        //gets the path to comments
+        let key = Database.database().reference().child("posts").child((currentPhoto?.uniqueID)!).child("comments")
+        //puts the text into the comments array in the photo class
+        currentPhoto?.comments.append(self.commentsTextField.text!)
+        //gets the size of the array and turns it to a string to be used as a key for key value pair
+        let k = String(describing: currentPhoto!.comments.count-1)
+        key.updateChildValues([k:self.commentsTextField.text!])
+        
+    }
+    
     func loadLikes()
     {
-        let currentPhoto = Photo(photoUrlString: self.currentUrlString, uniqueID: self.currentKey)
-        Database.database().reference().child("posts").child(currentPhoto.uniqueID).observeSingleEvent(of: .value, with: {(snapshot:DataSnapshot) in
+        Database.database().reference().child("posts").child((currentPhoto?.uniqueID)!).observeSingleEvent(of: .value, with: {(snapshot:DataSnapshot) in
             if let dictionary = snapshot.value as? [String:Any]{
                 print(dictionary)
                 let likesCount = dictionary["likesCount"] as? Int ?? 0
@@ -107,9 +185,43 @@ class DetailVC: UIViewController {
         })
     }
     
-    /////////////////////////////////////////////////////////////////////////
-    //minor things to fix: 1.If you navigate from detailVC to secondVC then//
-    //hit the home tabbarbutton you go back to detailVC instead of firstVC //
-    ////////////////////////////////////////////////////////////////////////
+    func loadCommentsFromDatabase()
+    {
+        Database.database().reference().child("posts").child((currentPhoto?.uniqueID)!).observeSingleEvent(of: .value, with: {(snapshot:DataSnapshot) in
+            if let dictionary = snapshot.value as? [String:Any]{
+                if let comments = dictionary["comments"] as? [String]{
+                    self.currentPhoto?.comments = comments
+                    print(comments)
+                     self.commentsTableView.reloadData()
+                    
+                }
+            }
+        })
+    }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+       return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.currentPhoto!.comments.count
+    }
+    
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = commentsTableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
+        
+        cell.comment.text = currentPhoto?.comments[indexPath.row]
+        
+        return cell
+    }
+    
+    ////////////////////////////////////////////////////////////////////////
+    //minor things to fix:                                                //
+    //1.If you navigate from detailVC to secondVC then                    //
+    //hit the home tabbarbutton you go back to detailVC instead of firstVC//
+    //                                                                    //
+    //2.gap exposing tableview between buttonview and imageview           //
+    //                                                                    //
+    //3.Use users so different users can comment and like the photos      //
+    ////////////////////////////////////////////////////////////////////////
 }
