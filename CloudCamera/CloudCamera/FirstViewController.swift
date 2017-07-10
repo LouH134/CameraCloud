@@ -40,6 +40,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.screenWidth = screenSize.width
         self.screenHeight = screenSize.height
         
+        //moves the cells in the collection closer together
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
@@ -51,7 +52,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewWillAppear(_ animated: Bool) {
         self.collectionView.reloadData()
-      
     }
     
     func loadPosts()
@@ -68,7 +68,12 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
                     guard let photoUrl =  value["photoURL"] as? String else{
                         return
                     }
-                    let post = Photo(photoUrlString: photoUrl, uniqueID: key)
+                    guard let storageIdString = value["storageID"] as? String else{
+                        return
+                    }
+                    
+                    let post = Photo(photoUrlString: photoUrl, uniqueID: key, storageID:storageIdString)
+                    
                      self.pictures.append(post)
                 }
                 
@@ -81,7 +86,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func loadPhoto()
     {
-        
         for imageObject in pictures {
               let myUrl = URL(string: imageObject.photoURL)
             
@@ -134,6 +138,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.navigationController?.pushViewController(detailVC, animated: true)
         detailVC.currentPhoto = self.pictures[indexPath.row]
         detailVC.currentImage = self.pictures[indexPath.row].photoImage
+        detailVC.photoIndex = indexPath.row
     }
     
     

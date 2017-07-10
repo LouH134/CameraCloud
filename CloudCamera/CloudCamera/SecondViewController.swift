@@ -121,14 +121,14 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
                 //takes the metadata and makes a urlstring that can be saved in firebase
                 let photoURL = metadata?.downloadURL()?.absoluteString
                 //let chosenPhoto = Photo(image: self.selectedImage!, photoUrlString: photoURL!)
-                
-                self.sendDataToDatabase(photoURL: photoURL!)
+                //FIX
+                self.sendDataToDatabase(photoURL: photoURL!, storageID: photoID)
             })
         }
         dismiss(animated: true, completion: nil)
     }
     
-    func sendDataToDatabase(photoURL: String)
+    func sendDataToDatabase(photoURL: String, storageID: String)
     {
         //create node in the database
         let ref = Database.database().reference()
@@ -137,13 +137,13 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         //can be thought of as selected picture in collection view
         let newPostReference = postsReference.child(newPostID)
         //adding childs to post
-        newPostReference.setValue(["photoURL":photoURL, "likes":0, "comments":self.commentsArray], withCompletionBlock: {(error, ref) in
+        newPostReference.setValue(["photoURL":photoURL, "likes":0, "comments":self.commentsArray,"storageID":storageID], withCompletionBlock: {(error, ref) in
             if error != nil{
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
             ProgressHUD.showSuccess("Woot!, it worked!")
-            self.delegate?.didUploadNewPhoto(Photo(photoUrlString: photoURL, uniqueID: newPostID)
+            self.delegate?.didUploadNewPhoto(Photo(photoUrlString: photoURL, uniqueID: newPostID, storageID: storageID)
         )})
 
     }

@@ -20,13 +20,15 @@ class Photo
     var comments = [String]()
     var likes:Int?
     var uniqueID: String
+    var storageID: String
     
     
     
     
     
-    init(photoUrlString:String, uniqueID: String)
+    init(photoUrlString:String, uniqueID: String, storageID: String)
     {
+        self.storageID = storageID
         self.photoURL = photoUrlString
         self.uniqueID = uniqueID
     }

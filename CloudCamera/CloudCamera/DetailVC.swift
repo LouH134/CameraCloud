@@ -6,17 +6,16 @@
 //  Copyright © 2017 Louis Harris. All rights reserved.
 //
 
-///////////////////////////////////////////////////////
-//             TO DO:                                //
-//Delete the Photo from database and collection view.//
-//                                                   //
-//Message button should go to a tableviewVC with all //
-//the comments.                                      //
-///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                      TO DO LIST:
+//1.If you navigate from detailVC to secondVC then hit the home tabbarbutton you go back to detailVC instead of firstVC
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
+
 
 class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -28,6 +27,7 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var currentImage:UIImage?
     var currentPhoto : Photo?
     var keyboardHeight: CGRect!
+    var photoIndex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +58,8 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func keyboardWillShow(notification:NSNotification)
     {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue{
-            if self.view.frame.origin.y == 0{
-                self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: keyboardHeight.height - keyboardSize.height - 1)
-            }
+            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: keyboardHeight.height - keyboardSize.height - 1)
+            
         }
     }
     
@@ -104,6 +103,26 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UIAlertAction(title: "Delete Photo", style: .default, handler: {
             (alert:UIAlertAction!) -> Void in
             print("Photo Deleted")
+            //delete photo from storage
+            let postsRef = Storage.storage().reference().child("posts")
+            let photoRef = postsRef.child((self.currentPhoto?.storageID)!)
+            photoRef.delete{error in
+                if let error = error{
+                    //error occured
+                    ProgressHUD.showError(error.localizedDescription)
+                    return
+                }else{
+                    //file deleted succssesfully
+                    ProgressHUD.showSuccess("The Photo was Deleted")
+                    //delete from database
+                    let databaseRef = Database.database().reference().child("posts").child((self.currentPhoto?.uniqueID)!)
+                    databaseRef.removeValue()
+                    //return to firstVC 
+                    let firstVC = self.navigationController?.viewControllers[0] as! FirstViewController
+                    firstVC.pictures.remove(at: self.photoIndex)
+                    self.goBack()
+                }
+            }
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -120,9 +139,15 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let messageTableVC = storyboard.instantiateViewController(withIdentifier: "MessageTableVC") as! MessageTableVC
+        self.navigationController?.pushViewController(messageTableVC, animated: true)
+        
+        messageTableVC.currentMessages = self.currentPhoto
     }
     @IBAction func commentTxtFieldTriggered(_ sender: Any) {
         saveCommentToDatabase()
+        self.commentsTableView.reloadData()
     }
     
     func saveLikesToDatabase()
@@ -214,14 +239,4 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-    ////////////////////////////////////////////////////////////////////////
-    //minor things to fix:                                                //
-    //1.If you navigate from detailVC to secondVC then                    //
-    //hit the home tabbarbutton you go back to detailVC instead of firstVC//
-    //                                                                    //
-    //2.gap exposing tableview between buttonview and imageview           //
-    //                                                                    //
-    //3.Use users so different users can comment and like the photos      //
-    ////////////////////////////////////////////////////////////////////////
 }
