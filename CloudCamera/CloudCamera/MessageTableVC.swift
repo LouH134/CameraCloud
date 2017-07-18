@@ -21,6 +21,10 @@ class MessageTableVC: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
         self.navigationItem.title = "Comments"
         
+        //use this to make tableview cells dynamic
+        self.tableView.estimatedRowHeight = 140
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
     }
     
     func goBack()

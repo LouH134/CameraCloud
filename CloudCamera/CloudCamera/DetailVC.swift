@@ -50,6 +50,10 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        //makes tableviewcells dynamic
+        commentsTableView.estimatedRowHeight = 140
+        commentsTableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func keyboardWillShow(notification:NSNotification)
