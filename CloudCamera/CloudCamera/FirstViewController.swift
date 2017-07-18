@@ -18,6 +18,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     var screenSize:CGRect!
     var screenWidth:CGFloat!
     var screenHeight:CGFloat!
+    var currentUsername:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +49,28 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         collectionView.collectionViewLayout = layout
         
         loadPosts()
+        getUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.collectionView.reloadData()
+    }
+    
+    func getUser()
+    {
+        // Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value) {(snapshot:DataSnapshot) in
+            //turn data into a String:Any dictionary get the folder get the urlstring as post put it into an array
+            if let dictionary = snapshot.value as? [String:Any]{
+
+                guard let username =  dictionary["username"] as? String else{
+                    return
+                }
+                print(username)
+                self.currentUsername = username
+            }
+        }
+        
     }
     
     func loadPosts()
@@ -139,6 +158,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         detailVC.currentPhoto = self.pictures[indexPath.row]
         detailVC.currentImage = self.pictures[indexPath.row].photoImage
         detailVC.photoIndex = indexPath.row
+        detailVC.username = self.currentUsername
     }
     
     

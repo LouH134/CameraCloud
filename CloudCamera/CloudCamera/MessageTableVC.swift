@@ -11,6 +11,7 @@ import UIKit
 class MessageTableVC: UITableViewController {
     
     var currentMessages:Photo?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +49,13 @@ class MessageTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BigTableViewCell", for: indexPath) as! BigTableViewCell
 
-        // Configure the cell...
-        cell.comment.text = currentMessages?.comments[indexPath.row]
+        let dic = currentMessages?.comments[indexPath.row]
+        
+        cell.author.text = dic?["user"]
+        cell.comment.text = dic?["text"]
 
+//        cell.textLabel?.text = "TEST!!!"
+//        cell.detailTextLabel?.text = dic?["text"]
         return cell
     }
     

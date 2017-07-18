@@ -6,11 +6,6 @@
 //  Copyright © 2017 Louis Harris. All rights reserved.
 //
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                      TO DO LIST:
-//1.If you navigate from detailVC to secondVC then hit the home tabbarbutton you go back to detailVC instead of firstVC
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
@@ -28,13 +23,15 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var currentPhoto : Photo?
     var keyboardHeight: CGRect!
     var photoIndex: Int!
+    var username:String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadLikes()
         loadCommentsFromDatabase()
         
-       
+        self.commentsTableView.reloadData()
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goBack))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.red
@@ -117,7 +114,7 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     //delete from database
                     let databaseRef = Database.database().reference().child("posts").child((self.currentPhoto?.uniqueID)!)
                     databaseRef.removeValue()
-                    //return to firstVC 
+                    //return to firstVC
                     let firstVC = self.navigationController?.viewControllers[0] as! FirstViewController
                     firstVC.pictures.remove(at: self.photoIndex)
                     self.goBack()
@@ -135,7 +132,7 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self.present(optionMenu, animated: true, completion: nil)
         optionMenu.view.tintColor = .red
-
+        
     }
     
     @IBAction func messageButtonPressed(_ sender: Any) {
@@ -153,7 +150,7 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func saveLikesToDatabase()
     {
         //get the path and run a transaction block
-    
+        
         Database.database().reference().child("posts").child((currentPhoto?.uniqueID)!).runTransactionBlock({(currentData:MutableData) -> TransactionResult in
             //gets current user and teh data as a dictionary of string any object
             if var post = currentData.value as? [String:AnyObject], let uid = Auth.auth().currentUser?.uid{
@@ -189,12 +186,10 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     {
         //gets the path to comments
         let key = Database.database().reference().child("posts").child((currentPhoto?.uniqueID)!).child("comments")
-        //puts the text into the comments array in the photo class
-        currentPhoto?.comments.append(self.commentsTextField.text!)
-        //gets the size of the array and turns it to a string to be used as a key for key value pair
-        let k = String(describing: currentPhoto!.comments.count-1)
-        key.updateChildValues([k:self.commentsTextField.text!])
-        
+        //make the array of string dictonaries have a user name and text
+        currentPhoto?.comments.append(["user":username!, "text": self.commentsTextField!.text!])
+        //set the value of the path to the array of dictionaries
+        key.setValue(currentPhoto?.comments)
     }
     
     func loadLikes()
@@ -212,31 +207,41 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func loadCommentsFromDatabase()
     {
-        Database.database().reference().child("posts").child((currentPhoto?.uniqueID)!).observeSingleEvent(of: .value, with: {(snapshot:DataSnapshot) in
-            if let dictionary = snapshot.value as? [String:Any]{
-                if let comments = dictionary["comments"] as? [String]{
-                    self.currentPhoto?.comments = comments
-                    print(comments)
-                     self.commentsTableView.reloadData()
-                    
-                }
+        Database.database().reference().child("posts").child((currentPhoto?.uniqueID)!).observeSingleEvent(of: .value, with: { snapshot in
+       
+            guard let userDictionary = snapshot.value as? [String: Any] else {
+                print("could not cast to comments array, the value of snapshot is \(String(describing: snapshot.value))")
+                return
             }
+            
+            guard let arrayOfcomments = userDictionary["comments"] as? [[String: String]] else{
+                return
+            }
+            self.currentPhoto!.comments = arrayOfcomments
+            self.commentsTableView.reloadData()
+            //print(arrayOfcomments)
         })
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-       return 1
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.currentPhoto!.comments.count
     }
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = commentsTableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         
-        cell.comment.text = currentPhoto?.comments[indexPath.row]
+        //dic is the array of dictionaries at the chosen path
+        let dic = self.currentPhoto!.comments[indexPath.row]
         
+        //here we get the specific string from one of the arrays
+        cell.comment.text = dic["text"]
+        cell.author.text = dic["user"]
+
         return cell
     }
 }

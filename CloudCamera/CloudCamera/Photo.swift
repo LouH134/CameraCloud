@@ -12,12 +12,10 @@ import FirebaseStorage
 
 class Photo
 {
-    //photo url
     var photoURL:String!
-    //image
     var photoImage:UIImage?
     //post
-    var comments = [String]()
+    var comments = [[String: String]]()
     var likes:Int?
     var uniqueID: String
     var storageID: String

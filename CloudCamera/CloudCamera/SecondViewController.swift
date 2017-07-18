@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
+//
 protocol ImageUploadDelegate {
     func didUploadNewPhoto(_ photo: Photo)
 }
@@ -28,6 +29,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.delegate = self
         
     }
 
@@ -147,7 +149,24 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         )})
 
     }
-
-
 }
+
+extension SecondViewController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        if let homeNavCtrl = tabBarController.viewControllers?[0] as? UINavigationController {
+            
+            if viewController === homeNavCtrl {
+                homeNavCtrl.popToRootViewController(animated: true)
+            }
+        }
+    }
+    
+
+    
+}
+
+
+
 

@@ -91,24 +91,24 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3ef-x0-vpe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jYK-Bo-TiW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jYK-Bo-TiW">
                                 <rect key="frame" x="0.0" y="466" width="375" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" id="oNK-Vf-fqG" customClass="TableViewCell" customModule="CloudCamera" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oNK-Vf-fqG" id="uvA-eK-AZo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1B-Fo-Nnb" userLabel="Author">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1B-Fo-Nnb" userLabel="Author">
                                                     <rect key="frame" x="8" y="8" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHv-JW-q8s" userLabel="Comment">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHv-JW-q8s" userLabel="Comment">
                                                     <rect key="frame" x="8" y="13" width="359" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -243,42 +243,49 @@
         <scene sceneID="wAx-Ek-N25">
             <objects>
                 <tableViewController storyboardIdentifier="MessageTableVC" id="xBj-84-pbw" customClass="MessageTableVC" customModule="CloudCamera" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uJi-gM-akY">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="28" sectionFooterHeight="28" id="uJi-gM-akY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BigTableViewCell" id="jor-3B-Vvj" customClass="BigTableViewCell" customModule="CloudCamera" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BigTableViewCell" rowHeight="103" id="jor-3B-Vvj" customClass="BigTableViewCell" customModule="CloudCamera" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jor-3B-Vvj" id="3xK-Gt-dFS">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="102.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od4-Rq-yaN" userLabel="Author">
-                                            <rect key="frame" x="8" y="0.0" width="0.0" height="0.0"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od4-Rq-yaN" userLabel="Author">
+                                            <rect key="frame" x="8" y="17" width="359" height="23"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="23" id="bJ3-p9-5kz"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhu-iq-iwv" userLabel="Comment">
-                                            <rect key="frame" x="8" y="1" width="359" height="21"/>
+                                            <rect key="frame" x="8" y="48" width="359" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="E3m-kc-9GR"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="od4-Rq-yaN" firstAttribute="top" secondItem="3xK-Gt-dFS" secondAttribute="top" id="1IT-hL-wXr"/>
-                                        <constraint firstItem="fhu-iq-iwv" firstAttribute="top" secondItem="od4-Rq-yaN" secondAttribute="bottom" constant="1" id="LiV-4f-uc3"/>
-                                        <constraint firstItem="od4-Rq-yaN" firstAttribute="leading" secondItem="3xK-Gt-dFS" secondAttribute="leading" constant="8" id="Lzt-Y8-h9R"/>
-                                        <constraint firstItem="fhu-iq-iwv" firstAttribute="leading" secondItem="3xK-Gt-dFS" secondAttribute="leading" constant="8" id="dKg-sC-CMi"/>
-                                        <constraint firstAttribute="trailing" secondItem="fhu-iq-iwv" secondAttribute="trailing" constant="8" id="dOY-O7-Ffj"/>
+                                        <constraint firstItem="fhu-iq-iwv" firstAttribute="leading" secondItem="3xK-Gt-dFS" secondAttribute="leadingMargin" id="OZd-g9-Mwk"/>
+                                        <constraint firstItem="fhu-iq-iwv" firstAttribute="trailing" secondItem="3xK-Gt-dFS" secondAttribute="trailingMargin" id="Ray-bI-ECM"/>
+                                        <constraint firstItem="od4-Rq-yaN" firstAttribute="trailing" secondItem="3xK-Gt-dFS" secondAttribute="trailingMargin" id="glp-mc-6j6"/>
+                                        <constraint firstItem="fhu-iq-iwv" firstAttribute="top" secondItem="od4-Rq-yaN" secondAttribute="bottom" constant="8" id="ieW-xc-igg"/>
+                                        <constraint firstItem="od4-Rq-yaN" firstAttribute="top" secondItem="3xK-Gt-dFS" secondAttribute="topMargin" constant="9" id="k6W-X3-kvY"/>
+                                        <constraint firstItem="od4-Rq-yaN" firstAttribute="leading" secondItem="3xK-Gt-dFS" secondAttribute="leadingMargin" id="smC-LZ-J9b"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="author" destination="fhu-iq-iwv" id="BgH-Jn-Bg8"/>
-                                    <outlet property="comment" destination="fhu-iq-iwv" id="rcv-p8-05V"/>
+                                    <outlet property="author" destination="od4-Rq-yaN" id="zlw-QT-HAp"/>
+                                    <outlet property="comment" destination="fhu-iq-iwv" id="Ihc-wo-w70"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
